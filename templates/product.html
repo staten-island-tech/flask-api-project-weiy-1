@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ product.name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <div class="container product-detail">
+    <h1>{{ product.name }}</h1>
+    <img src="{{ product.image }}" alt="{{ product.name }}" />
+    <p><strong>Advice:</strong> {{ product.advice }}</p>
+    <p><strong>Status:</strong> {{ product.status }}</p>
+    <p><strong>Release Date:</strong> {{ product.releaseDate }}</p>
+    <p><strong>Days Since Last Release:</strong> {{ product.daysSinceLastRelease }}</p>
+    <p><strong>Average Days Between Releases:</strong> {{ product.average }}</p>
+  </div>
+</body>
+</html>

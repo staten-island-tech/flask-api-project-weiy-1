@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Apple Product Guide</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>Apple Product Guide</h1>
+    <div class="card-container">
+      {% for product in products %}
+      <a href="{{ url_for('product_detail', slug=product.slug) }}" class="card-link">
+        <div class="card">
+          <img src="{{ product.image }}" alt="{{ product.name }}" />
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.status }}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
