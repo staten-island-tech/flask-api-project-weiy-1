@@ -5,11 +5,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    # Fetch Apple product data
     response = requests.get("https://raw.githubusercontent.com/spencerwooo/apple-product-guide/refs/heads/master/data.json")
     data = response.json()
 
-    # Convert the JSON dict to a list of products
     products = []
     for key, value in data.items():
         product = {
@@ -20,7 +18,7 @@ def index():
             'releaseDate': value.get('releaseDate', 'N/A'),
             'status': value.get('status', 'N/A'),
             'image': value.get('image'),
-            'slug': key.replace(" ", "-").replace("\"", "")  # For URL routing
+            'slug': key.replace(" ", "-").replace("\"", "")  #for url routing
         }
         products.append(product)
 
@@ -28,11 +26,9 @@ def index():
 
 @app.route("/product/<slug>")
 def product_detail(slug):
-    # Re-fetch the data (or cache it in a real app)
     response = requests.get("https://raw.githubusercontent.com/spencerwooo/apple-product-guide/refs/heads/master/data.json")
     data = response.json()
 
-    # Find the product by matching slug
     for key, value in data.items():
         generated_slug = key.replace(" ", "-").replace("\"", "")
         if generated_slug == slug:
