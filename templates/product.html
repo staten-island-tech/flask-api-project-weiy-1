@@ -14,6 +14,12 @@
     <p><strong>Release Date:</strong> {{ product.releaseDate }}</p>
     <p><strong>Days Since Last Release:</strong> {{ product.daysSinceLastRelease }}</p>
     <p><strong>Average Days Between Releases:</strong> {{ product.average }}</p>
+    
+    <a href="{{ product.apple_link }}" target="_blank">
+      <button>Apple website for {{ product.name }}</button></a>
+
+    <a href="{{ url_for('index') }}"><button>Go back</button></a>
+    
   </div>
 </body>
 </html>
