@@ -30,7 +30,7 @@ def index():
 
     products = []
     for key, value in data.items():
-        slug = key.replace(" ", "-").replace("\"", "")
+        slug = key.replace(" ", "-").replace("\"", "").lower()
         product = {
             'name': value.get('name', key),
             'advice': value.get('advice', 'N/A'),
@@ -51,12 +51,19 @@ def product_detail(slug):
     data = response.json()
 
     for key, value in data.items():
-        generated_slug = key.replace(" ", "-").replace("\"", "")
+        generated_slug = key.replace(" ", "-").replace("\"", "").lower()
         if generated_slug == slug:
             product = value
             product['name'] = value.get('name', key)
             product['slug'] = slug
-            product['apple_link'] = product_links.get(slug, "https://www.apple.com")  # fallback to homepage
+
+            matched_link = "https://www.apple.com"
+            for applethingy in product_links:
+                if applethingy in slug:
+                    matched_link = product_links[applethingy]
+                    break
+
+            product['apple_link'] = matched_link
             return render_template("product.html", product=product)
 
     return "Product not found", 404
