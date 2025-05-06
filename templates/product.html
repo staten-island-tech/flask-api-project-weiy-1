@@ -1,25 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>{{ product.name }}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <div class="container product-detail">
-    <h1>{{ product.name }}</h1>
-    <img src="{{ product.image }}" alt="{{ product.name }}" />
-    <p><strong>Advice:</strong> {{ product.advice }}</p>
-    <p><strong>Status:</strong> {{ product.status }}</p>
-    <p><strong>Release Date:</strong> {{ product.releaseDate }}</p>
-    <p><strong>Days Since Last Release:</strong> {{ product.daysSinceLastRelease }}</p>
-    <p><strong>Average Days Between Releases:</strong> {{ product.average }}</p>
-    
-    <a href="{{ product.apple_link }}" target="_blank">
-      <button>Apple website for {{ product.name }}</button></a>
-
-    <a href="{{ url_for('index') }}"><button>Go back</button></a>
-    
-  </div>
+    <a href="{{ url_for('index') }}">&larr; Back to products</a>
+    <div class="product-detail">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <h1>{{ product.name }}</h1>
+        <p><strong>Status:</strong> {{ product.status }}</p>
+        <p><strong>Advice:</strong> {{ product.advice }}</p>
+        <p><strong>Average Price:</strong> ${{ product.average }}</p>
+        <p><strong>Release Date:</strong> {{ product.releaseDate }}</p>
+        <p><a href="{{ product.apple_url }}" target="_blank" class="apple-link-button">View product on apple.com</a></p>      
+    </div>
 </body>
 </html>

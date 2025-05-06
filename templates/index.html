@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Apple Product Guide</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <meta charset="UTF-8">
+    <title>Apple Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1>Apple Product Guide (severely outdated)</h1>
-    <div class="card-container">
-      {% for product in products %}
-      <a href="{{ url_for('product_detail', slug=product.slug) }}" class="card-link">
-        <div class="card">
-          <img src="{{ product.image }}" alt="{{ product.name }}" />
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">{{ product.status }}</p>
-          </div>
-        </div>
-      </a>
-      {% endfor %}
+    <h1>Apple Products (still outdated)</h1>
+    <div class="product-grid">
+        {% for key, product in products.items() %}
+        <a href="{{ url_for('product', product_name=key) }}" class="product-card">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+            <h2>{{ product.name }}</h2>
+            <p>Status: {{ product.status }}</p>
+            <p>Advice: {{ product.advice }}</p>
+        </a>
+        {% endfor %}
     </div>
-  </div>
 </body>
 </html>
