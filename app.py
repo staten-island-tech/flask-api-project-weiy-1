@@ -19,7 +19,8 @@ product_links = {
     "apple-watch": "https://www.apple.com/watch/",
     "apple-watch-ultra": "https://www.apple.com/apple-watch-ultra/",
     "apple-tv": "https://www.apple.com/apple-tv-4k/",
-    "airpods": "https://www.apple.com/airpods/",
+    "airpods": "https://www.apple.com/airpods-4/",
+    "airpods-pro": "https://www.apple.com/airpods-pro/",
     "homepod": "https://www.apple.com/homepod/"
 }
 
@@ -57,13 +58,15 @@ def product_detail(slug):
             product['name'] = value.get('name', key)
             product['slug'] = slug
 
-            matched_link = "https://www.apple.com"
-            for applethingy in product_links:
-                if applethingy in slug:
-                    matched_link = product_links[applethingy]
-                    break
+            apple_link = f"https://www.apple.com/{slug}/"
 
-            product['apple_link'] = matched_link
+            if slug not in product_links:
+                for key_link in product_links:
+                    if key_link in slug:
+                        apple_link = product_links[key_link]
+                        break
+
+            product['apple_link'] = apple_link
             return render_template("product.html", product=product)
 
     return "Product not found", 404
