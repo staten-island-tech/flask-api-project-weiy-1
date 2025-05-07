@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Apple Products</title>
+    <title>Periodic Table</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Apple Products (still outdated)</h1>
-    <div class="product-grid">
-        {% for key, product in products.items() %}
-        <a href="{{ url_for('product', product_name=key) }}" class="product-card">
-            <img src="{{ product.image }}" alt="{{ product.name }}">
-            <h2>{{ product.name }}</h2>
-            <p>Status: {{ product.status }}</p>
-            <p>Advice: {{ product.advice }}</p>
-        </a>
+    <h1>Periodic Table of Elements</h1>
+    <div class="grid">
+        {% for element in elements %}
+            <a class="element" href="{{ url_for('element', symbol=element.symbol) }}" title="{{ element.name }}">
+                <div>{{ element.symbol }}</div>
+                <small>{{ element.atomicNumber }}</small>
+            </a>
         {% endfor %}
     </div>
 </body>

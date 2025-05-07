@@ -3,23 +3,21 @@ import requests
 
 app = Flask(__name__)
 
-API_URL = "https://raw.githubusercontent.com/weiy-1/random-api/refs/heads/main/data_api.json"
-
 @app.route("/")
 def index():
-    response = requests.get(API_URL)
+    response = requests.get("https://raw.githubusercontent.com/neelpatel05/periodic-table-api/refs/heads/master/data.json")
     data = response.json()
-    return render_template("index.html", products=data)
+    return render_template("index.html", elements=data)
 
-@app.route("/product/<product_name>")
-def product(product_name):
-    response = requests.get(API_URL)
+@app.route("/element/<symbol>")
+def element(symbol):
+    response = requests.get("https://raw.githubusercontent.com/neelpatel05/periodic-table-api/refs/heads/master/data.json")
     data = response.json()
-    product_data = data.get(product_name)
-    if product_data:
-        return render_template("product.html", product=product_data)
+    element_data = next((el for el in data if el['symbol'].lower() == symbol.lower()), None)
+    if element_data:
+        return render_template("element.html", element=element_data)
     else:
-        return f"Product '{product_name}' not found", 404
+        return f"Element '{symbol}' not found", 404
 
 if __name__ == "__main__":
     app.run(debug=True)

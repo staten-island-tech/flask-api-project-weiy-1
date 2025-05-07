@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ element.name }} - Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('index') }}">← Back to Table</a>
+    <h1>{{ element.name }} ({{ element.symbol }})</h1>
+    <ul>
+        <li><strong>Atomic Number:</strong> {{ element.atomicNumber }}</li>
+        <li><strong>Atomic Mass:</strong> {{ element.atomicMass }}</li>
+        <li><strong>Electron Configuration:</strong> {{ element.electronicConfiguration }}</li>
+        <li><strong>Electronegativity:</strong> {{ element.electronegativity }}</li>
+        <li><strong>Oxidation States:</strong> {{ element.oxidationStates }}</li>
+        <li><strong>Standard State:</strong> {{ element.standardState }}</li>
+        <li><strong>Group Block:</strong> {{ element.groupBlock }}</li>
+        <li><strong>Bonding Type:</strong> {{ element.bondingType }}</li>
+        <li><strong>Melting Point:</strong> {{ element.meltingPoint }} K</li>
+        <li><strong>Boiling Point:</strong> {{ element.boilingPoint }} K</li>
+        <li><strong>Density:</strong> {{ element.density }} g/cm³</li>
+        <li><strong>Year Discovered:</strong> {{ element.yearDiscovered }}</li>
+    </ul>
+</body>
+</html>
