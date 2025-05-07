@@ -7,10 +7,50 @@
 </head>
 <body>
     <h1>Periodic Table of Elements</h1>
+
+    <form method="get" class="controls">
+        <label>Sort by:
+            <select name="sortBy">
+                <option value="">-- None --</option>
+                <option value="atomicNumber" {% if selected_sort_by == 'atomicNumber' %}selected{% endif %}>Atomic Number</option>
+                <option value="atomicMass" {% if selected_sort_by == 'atomicMass' %}selected{% endif %}>Atomic Mass</option>
+                <option value="electronegativity" {% if selected_sort_by == 'electronegativity' %}selected{% endif %}>Electronegativity</option>
+                <option value="meltingPoint" {% if selected_sort_by == 'meltingPoint' %}selected{% endif %}>Melting Point</option>
+                <option value="boilingPoint" {% if selected_sort_by == 'boilingPoint' %}selected{% endif %}>Boiling Point</option>
+            </select>
+        </label>
+        <label>Order:
+            <select name="order">
+                <option value="asc" {% if selected_order == 'asc' %}selected{% endif %}>Low → High</option>
+                <option value="desc" {% if selected_order == 'desc' %}selected{% endif %}>High → Low</option>
+            </select>
+        </label>
+        <label>Group Block:
+            <select name="groupBlock">
+                <option value="">-- All --</option>
+                {% for group in group_blocks %}
+                    <option value="{{ group }}" {% if selected_group_block == group %}selected{% endif %}>{{ group }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Standard State:
+            <select name="standardState">
+                <option value="">-- All --</option>
+                {% for state in standard_states %}
+                    <option value="{{ state }}" {% if selected_standard_state == state %}selected{% endif %}>{{ state }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button type="submit">Apply</button>
+        <a href="{{ url_for('index') }}" class="clear-button">Clear Filters</a>
+    </form>
+
+
     <div class="grid">
         {% for element in elements %}
             <a class="element" href="{{ url_for('element', symbol=element.symbol) }}" title="{{ element.name }}">
-                <div>{{ element.symbol }}</div>
+                <div>({{ element.symbol }})</div>
+                <div>{{ element.name }}</div>
                 <small>{{ element.atomicNumber }}</small>
             </a>
         {% endfor %}
