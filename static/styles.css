@@ -110,11 +110,15 @@ form.controls label {
 
 form.controls select,
 form.controls button {
+  display: inline-block;
   padding: 0.4rem;
   font-size: 0.95rem;
-  color: #000000;
   border: 1px solid #161616;
   border-radius: 10px;
+  background-color: #fff; 
+  color: #000000;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
 }
 
 .clear-button {
@@ -131,4 +135,19 @@ form.controls button {
 
 .clear-button:hover {
   background-color: #f0f8ff;
+}
+
+.flash-messages {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 0.5rem;
+}
+
+.flash.error {
+  background-color: #fdd;
+  border: 1px solid #f99;
+  color: #900;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
 }

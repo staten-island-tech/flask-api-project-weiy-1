@@ -8,12 +8,20 @@
 <body>
     <h1>Periodic Table of Elements</h1>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
     <form method="get" class="controls">
         <label>Sort by:
             <select name="sortBy">
-                <option value="">-- None --</option>
                 <option value="atomicNumber" {% if selected_sort_by == 'atomicNumber' %}selected{% endif %}>Atomic Number</option>
-                <option value="atomicMass" {% if selected_sort_by == 'atomicMass' %}selected{% endif %}>Atomic Mass</option>
                 <option value="electronegativity" {% if selected_sort_by == 'electronegativity' %}selected{% endif %}>Electronegativity</option>
                 <option value="meltingPoint" {% if selected_sort_by == 'meltingPoint' %}selected{% endif %}>Melting Point</option>
                 <option value="boilingPoint" {% if selected_sort_by == 'boilingPoint' %}selected{% endif %}>Boiling Point</option>
@@ -48,7 +56,9 @@
 
     <div class="grid">
         {% for element in elements %}
-            <a class="element" href="{{ url_for('element', symbol=element.symbol) }}" title="{{ element.name }}">
+        <a class="element"
+        href="{{ url_for('element', symbol=element.symbol) }}"
+        title="{{ element.name }} ({{ element.symbol }})&#10;Atomic Number: {{ element.atomicNumber }}&#10;Group: {{ element.groupBlock }}&#10;Standard State: {{ element.standardState }}">     
                 <div>({{ element.symbol }})</div>
                 <div>{{ element.name }}</div>
                 <small>{{ element.atomicNumber }}</small>
