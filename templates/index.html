@@ -35,7 +35,7 @@
         </label>
         <label>Group Block:
             <select name="groupBlock">
-                <option value="">-- All --</option>
+                <option value=""> All </option>
                 {% for group in group_blocks %}
                     <option value="{{ group }}" {% if selected_group_block == group %}selected{% endif %}>{{ group }}</option>
                 {% endfor %}
@@ -43,7 +43,7 @@
         </label>
         <label>Standard State:
             <select name="standardState">
-                <option value="">-- All --</option>
+                <option value=""> All </option>
                 {% for state in standard_states %}
                     <option value="{{ state }}" {% if selected_standard_state == state %}selected{% endif %}>{{ state }}</option>
                 {% endfor %}

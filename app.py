@@ -3,7 +3,7 @@ import requests
 from requests.exceptions import RequestException
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"  # Required for flashing messages
+app.secret_key = "supersceret"
 
 @app.route("/")
 def index():
@@ -15,7 +15,7 @@ def index():
         flash("Error fetching data. Please try again later.", "error")
         data = []
 
-    # --- Filtering ---
+
     group_block = request.args.get("groupBlock")
     standard_state = request.args.get("standardState")
 
@@ -24,7 +24,7 @@ def index():
     if standard_state:
         data = [el for el in data if el["standardState"].lower() == standard_state.lower()]
 
-    # --- Sorting ---
+
     sort_by = request.args.get("sortBy")
     order = request.args.get("order", "asc")
 
@@ -35,7 +35,7 @@ def index():
         except ValueError:
             data.sort(key=lambda x: x.get(sort_by, "").lower(), reverse=reverse)
 
-    # For filter options in the form
+
     group_blocks = sorted(set(el["groupBlock"] for el in data if el.get("groupBlock")))
     standard_states = sorted(set(el["standardState"] for el in data if el.get("standardState")))
 
@@ -49,6 +49,7 @@ def index():
         selected_sort_by=sort_by,
         selected_order=order
     )
+
 
 @app.route("/element/<symbol>")
 def element(symbol):
